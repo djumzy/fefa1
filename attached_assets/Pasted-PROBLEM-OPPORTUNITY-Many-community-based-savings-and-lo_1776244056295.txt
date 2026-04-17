@@ -1,0 +1,48 @@
+PROBLEM/OPPORTUNITY
+Many community-based savings and loan groups face challenges such as:
+-Manual and error-prone financial tracking
+-Lack of transparency in loan and savings records
+-Difficulty in member identification and data retrieval
+-Limited access to real-time financial updates
+
+Our digital solution addresses these challenges, providing an
+
+automated system that ensures accuracy, security, and efficiency in
+
+VSLA management
+
+VALUE PROPOSITION
+
+The INCLUDE US VSLA System is an innovative, digital solution designed to
+enhance the efficiency and transparency of Village Savings and Loan
+Associations (VSLA).
+This automated system enables VSLA groups to manage savings, loans, and
+financial records seamlessly. It allow each group to operate independently
+while being managed under a centralized administration.
+With real-time financial tracking, an intuitive user dashboard, and automatic
+notifications for updates, the INCLUDE US VSLA System simplifies the
+management of community savings and loan groups, empowering members
+with financial insights and promoting digital financial inclusion.
+
+KEY FEATURES
+
+1: Member Management: Each member has a profile with a profile photo for
+easy identification.
+2: Savings & Loan Tracking: Members can view their personal savings, total
+group savings, loan balance, and total group loan disbursed.
+3:Loan Calculator: Admins, treasurers, and members can use the loan
+calculator to determine loan repayment amounts, calculate interest, and track
+the remaining loan balance.
+4: Automated Reports: The system generates real-time financial reports for
+transparency depending on the logged user role :
+- Admin & Treasurer: Can add, edit, and manage savings and loan data.
+- Members: Can view their personal financial status.
+- Multisite Functionality: Each VSLA group operates as an independent
+subsite under the main platform.
+5: Secure Login & Registration: Ensures only authorized members access their
+financial data.
+6: Real-Time Loan Payment Tracking: The system tracks loan payments,
+updates the remaining balance, and sends notifications when a payment is
+made.
+7: Notifications appear on the dashboard when savings or loan data is
+updated, ensuring all members are aware of changes.
