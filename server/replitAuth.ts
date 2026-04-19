@@ -5,6 +5,7 @@ import passport from "passport";
 import session from "express-session";
 import type { Express, RequestHandler } from "express";
 import memoize from "memoizee";
+import { Pool } from "pg";
 import connectPg from "connect-pg-simple";
 import { storage } from "./storage";
 
@@ -24,9 +25,18 @@ const getOidcConfig = memoize(
 
 export function getSession() {
   const sessionTtl = 7 * 24 * 60 * 60 * 1000; // 1 week
+  const rawConnectionString = process.env.DATABASE_URL || "";
+  const connectionString = rawConnectionString.replace(/([?&])sslmode=require(&|$)/i, (match, lead, tail) => {
+    return tail === "&" ? lead : "";
+  });
+  const useSsl = /supabase\.co|supabase\.com|render\.com|rlwy\.net/i.test(connectionString);
+  const pool = new Pool({
+    connectionString,
+    ssl: useSsl ? { rejectUnauthorized: false } : undefined,
+  });
   const pgStore = connectPg(session);
   const sessionStore = new pgStore({
-    conString: process.env.DATABASE_URL,
+    pool,
     createTableIfMissing: false,
     ttl: sessionTtl,
     tableName: "sessions",

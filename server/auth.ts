@@ -2,6 +2,7 @@ import { Express, Request, Response, NextFunction } from "express";
 import session from "express-session";
 import { scrypt, randomBytes, timingSafeEqual } from "crypto";
 import { promisify } from "util";
+import { Pool } from "pg";
 import { storage } from "./storage";
 import { User, loginSchema } from "@shared/schema";
 import connectPg from "connect-pg-simple";
@@ -44,13 +45,21 @@ export function generateUserId(): string {
 // Setup authentication middleware
 export function setupAuth(app: Express) {
   const sessionTtl = 7 * 24 * 60 * 60 * 1000; // 1 week
+  const rawConnectionString = process.env.DATABASE_URL || "";
+  const connectionString = rawConnectionString.replace(/([?&])sslmode=require(&|$)/i, (match, lead, tail) => {
+    return tail === "&" ? lead : "";
+  });
+  const useSsl = /supabase\.co|supabase\.com|render\.com|rlwy\.net/i.test(connectionString);
+  const pool = new Pool({
+    connectionString,
+    ssl: useSsl ? { rejectUnauthorized: false } : undefined,
+  });
   const pgStore = connectPg(session);
   const sessionStore = new pgStore({
-    conString: process.env.DATABASE_URL,
+    pool,
     createTableIfMissing: true,
     ttl: sessionTtl,
     tableName: "sessions",
-    pgPoolOptions: { ssl: { rejectUnauthorized: false } },
   });
 
   const sessionSettings: session.SessionOptions = {
