@@ -11,8 +11,8 @@ if (!connectionString) {
 }
 
 // Create PostgreSQL connection pool
-// Ensure SSL for managed providers like Supabase, Render, etc.
-const useSsl = /supabase\.co|render\.com|sslmode=require/i.test(connectionString);
+// Ensure SSL for managed providers like Supabase, Render, Railway, etc.
+const useSsl = /supabase\.co|render\.com|rlwy\.net|sslmode=require/i.test(connectionString);
 const pool = new Pool({ 
   connectionString,
   ssl: useSsl ? { rejectUnauthorized: false } : undefined,
